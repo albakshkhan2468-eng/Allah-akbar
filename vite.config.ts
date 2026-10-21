@@ -49,9 +49,10 @@ export default defineConfig(() => {
         },
       }),
     ],
+    base: './',
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname || process.cwd(), '.'),
       },
     },
     server: {
