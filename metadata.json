@@ -1,0 +1,6 @@
+{
+  "name": "Live Lock Screen Clock & Daily Tasks",
+  "description": "Live shining digital clock with Hijri calendar, glowing effects, and daily tasks display with screen wake lock.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

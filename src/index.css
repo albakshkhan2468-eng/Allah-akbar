@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-digital: 'Chakra Petch', monospace, sans-serif;
+    --font-hud: 'Share Tech Mono', monospace;
+    --font-arabic: 'Cairo', 'Amiri', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #03090c;
+    color: #e2e8f0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+}
+
+.font-digital {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-hud {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.font-arabic {
+  font-family: 'Cairo', 'Amiri', system-ui, sans-serif;
+}
+
+/* Background Cyber Grid Pattern matching user's screenshot */
+.bg-cyber-matrix {
+  background-color: #030a0d;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(16, 240, 180, 0.07) 0%, transparent 60%),
+    radial-gradient(rgba(16, 240, 180, 0.12) 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 22px 22px;
+}
+
+/* Shining light sweep keyframes */
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0.9;
+  }
+  51%, 100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-shine-sweep {
+  animation: shineSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Pulsing neon glows */
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 10px rgba(16, 240, 180, 0.65)) drop-shadow(0 0 25px rgba(16, 240, 180, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(16, 240, 180, 0.9)) drop-shadow(0 0 38px rgba(16, 240, 180, 0.5));
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+/* Glowing text shadows */
+.text-glow-cyan {
+  text-shadow: 
+    0 0 8px rgba(16, 240, 180, 0.8),
+    0 0 20px rgba(16, 240, 180, 0.5),
+    0 0 40px rgba(16, 240, 180, 0.25);
+}
+
+.text-glow-amber {
+  text-shadow: 
+    0 0 8px rgba(245, 158, 11, 0.85),
+    0 0 20px rgba(245, 158, 11, 0.5),
+    0 0 35px rgba(245, 158, 11, 0.25);
+}
+
+.text-glow-purple {
+  text-shadow: 
+    0 0 8px rgba(168, 85, 247, 0.85),
+    0 0 20px rgba(168, 85, 247, 0.5),
+    0 0 35px rgba(168, 85, 247, 0.25);
+}
+
+.text-glow-blue {
+  text-shadow: 
+    0 0 8px rgba(56, 189, 248, 0.85),
+    0 0 20px rgba(56, 189, 248, 0.5),
+    0 0 35px rgba(56, 189, 248, 0.25);
+}
+
+/* Card Glows */
+.box-glow-cyan {
+  box-shadow: 
+    0 0 20px rgba(16, 240, 180, 0.15),
+    inset 0 0 12px rgba(16, 240, 180, 0.08);
+}
+
+.box-glow-amber {
+  box-shadow: 
+    0 0 20px rgba(245, 158, 11, 0.15),
+    inset 0 0 12px rgba(245, 158, 11, 0.08);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(4, 14, 17, 0.7);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 240, 180, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 240, 180, 0.5);
+}
