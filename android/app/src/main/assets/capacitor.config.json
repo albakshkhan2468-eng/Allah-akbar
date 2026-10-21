@@ -1,0 +1,8 @@
+{
+	"appId": "com.albaksh.liveclock",
+	"appName": "Live Lock Screen Clock",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	}
+}

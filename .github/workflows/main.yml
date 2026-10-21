@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Build Android APK and Web App
 
 on:
   push:
@@ -6,53 +6,48 @@ on:
       - main
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
-    name: Build Vite PWA Application
+  build-android-apk:
+    name: Build Android APK
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build Application
+      - name: Build Web Assets
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Sync Capacitor Android
+        run: npx cap sync android
 
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Build Android Debug APK
+        run: |
+          cd android
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK to GitHub Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: './dist'
-
-  deploy:
-    name: Deploy to GitHub Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          name: LiveLockScreen-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
